@@ -74,3 +74,4 @@ int	ft_negative(int num, t_params *params)
 	free(str);
 	return (len + len_di);
 }
+123
