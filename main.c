@@ -2,6 +2,6 @@
 
 int	main(void)
 {
-	printf("%", 2.5);
+	printf("%d", 2147483648);
 	return 0;
 }
