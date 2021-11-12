@@ -15,6 +15,7 @@ typedef struct s_params
 	int			width;
 	int			precision;
 	int			type;
+	int			pos_or_neg;
 }				t_params;
 
 #endif

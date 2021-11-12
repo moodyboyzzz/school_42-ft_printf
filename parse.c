@@ -12,6 +12,7 @@ t_params	ft_init(void)
 	params.width = 0;
 	params.precision = -1;
 	params.type = 0;
+	params.pos_or_neg = 1;
 	return (params);
 }
 

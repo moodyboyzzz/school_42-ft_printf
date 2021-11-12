@@ -2,6 +2,9 @@
 
 int	main(void)
 {
-	printf("%d", 2147483648);
-	return 0;
+	int	p;
+
+	p = 97;
+	printf("%10p", &p);
+	return (0);
 }
