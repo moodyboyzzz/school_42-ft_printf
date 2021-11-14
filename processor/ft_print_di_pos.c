@@ -1,4 +1,16 @@
-#include "libftprintf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_di_pos.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctommy <ctommy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/14 14:16:53 by ctommy            #+#    #+#             */
+/*   Updated: 2021/11/14 14:16:54 by ctommy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/libftprintf.h"
 
 int	ft_pos_none_precision(t_params *params, int len_di, char *str)
 {

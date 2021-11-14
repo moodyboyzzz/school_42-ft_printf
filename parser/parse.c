@@ -1,4 +1,4 @@
-#include "libftprintf.h"
+#include "../includes/libftprintf.h"
 
 t_params	ft_init(void)
 {
@@ -13,6 +13,7 @@ t_params	ft_init(void)
 	params.precision = -1;
 	params.type = 0;
 	params.pos_or_neg = 1;
+	params.flag = 1;
 	return (params);
 }
 
@@ -33,10 +34,10 @@ int	ft_parse_flags(int	*i, t_params *params, const char *format)
 			params->sharp = 1;
 		(*i)++;
 	}
-	if (flags->minus == 1)
-		flags->zero = 0;
-	if (flags->plus == 1)
-		flags->space = 0;
+	if (params->minus == 1)
+		params->zero = 0;
+	if (params->plus == 1)
+		params->space = 0;
 	return (*i);
 }
 

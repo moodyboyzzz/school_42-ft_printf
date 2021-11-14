@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_percent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctommy <ctommy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 14:16:24 by ctommy            #+#    #+#             */
-/*   Updated: 2021/11/14 14:16:25 by ctommy           ###   ########.fr       */
+/*   Created: 2021/11/14 14:16:46 by ctommy            #+#    #+#             */
+/*   Updated: 2021/11/14 14:16:46 by ctommy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libftprintf.h"
+#include "../includes/libftprintf.h"
 
-int	main(void)
+int	ft_print_percent(t_params *params)
 {
-	int	p;
+	int	len;
 
-	p = 97;
-	printf("%c\n", 'g');
-	ft_printf("%c\n", 'g');
-	return (0);
+	len = 0;
+	if (params->minus)
+	{
+		write(1, "%", 1);
+		len++;
+	}
+	while (params->width--)
+	{
+		if (params->zero)
+			ft_putchar_fd('0', 1);
+		else
+			ft_putchar_fd(' ', 1);
+		len++;
+	}
+	if (!params->minus)
+		write(1, "%", 1);
+	return (len);
 }

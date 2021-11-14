@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctommy <ctommy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 14:16:24 by ctommy            #+#    #+#             */
-/*   Updated: 2021/11/14 14:16:25 by ctommy           ###   ########.fr       */
+/*   Created: 2021/11/14 14:16:56 by ctommy            #+#    #+#             */
+/*   Updated: 2021/11/14 14:16:57 by ctommy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libftprintf.h"
+#include "../includes/libftprintf.h"
 
-int	main(void)
+int	ft_print_c(t_params	*params, char c)
 {
-	int	p;
+	int	len;
 
-	p = 97;
-	printf("%c\n", 'g');
-	ft_printf("%c\n", 'g');
-	return (0);
+	len = 0;
+	if (params->minus)
+		ft_putchar_fd(c, 1);
+	while (--params->width)
+	{
+		ft_putchar_fd(' ', 1);
+		len++;
+	}
+	if (!params->minus)
+		ft_putchar_fd(c, 1);
+	return (len + 1);
 }

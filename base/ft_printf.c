@@ -1,4 +1,17 @@
-#include "libftprintf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctommy <ctommy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/14 14:16:30 by ctommy            #+#    #+#             */
+/*   Updated: 2021/11/14 14:16:31 by ctommy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/libftprintf.h"
+#include <stdio.h>
 
 int	ft_print(t_params *params, va_list ap)
 {
@@ -8,7 +21,7 @@ int	ft_print(t_params *params, va_list ap)
 	if (params->type == 'c')
 		len = ft_print_c(params, va_arg(ap, int));
 	else if (params->type == 's')
-		len = ft_print_s(params, va_arg(ap, char *));
+		len = ft_print_str(params, va_arg(ap, char *));
 	else if (params->type == 'p')
 		len = ft_print_p(params, va_arg(ap, unsigned long));
 	else if (params->type == 'd' || params->type == 'i')
@@ -18,7 +31,7 @@ int	ft_print(t_params *params, va_list ap)
 	else if (params->type == 'x')
 		len = ft_print_x(params, va_arg(ap, unsigned int));
 	else if (params->type == 'X')
-		len = ft_print_X(params, va_arg(ap, unsigned int));
+		len = ft_print_x(params, va_arg(ap, unsigned int));
 	else if (params->type == '%')
 		len = ft_print_percent(params);
 	return (len);
@@ -31,7 +44,7 @@ int	ft_parse(va_list ap, int *i, t_params *params, const char *format)
 	*i = ft_parse_precision(ap, i, params, format);
 	if (format[*i] == 'c' || format[*i] == 's' || format[*i] == 'p'
 		|| format[*i] == 'd' || format[*i] == 'i' || format[*i] == 'u'
-		|| format[*i] == 'x' || format[*i] == 'X' || format[*i] == '%' ||)
+		|| format[*i] == 'x' || format[*i] == 'X' || format[*i] == '%')
 		params->type = format[(*i)++];
 	return (*i);
 }
