@@ -1,4 +1,4 @@
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 t_params	ft_init(void)
 {
@@ -52,9 +52,9 @@ int	ft_parse_width(va_list ap, int	*i, t_params *params, const char *format)
 			params->width *= -1;
 		}
 	}
-	while (ft_isdigit(params->width))
+	while (ft_isdigit(format[*i]))
 	{
-		params->width = (params->width * 10) + (format [*i] - '0');
+		params->width = (params->width * 10) + (format[*i] - '0');
 		(*i)++;
 	}
 	return (*i);
@@ -65,13 +65,16 @@ const char *format)
 {
 	if (format [*i] == '.')
 	{
+		params->precision = 0;
 		(*i)++;
 		if (format[*i] == '*')
+		{
 			params->precision = va_arg(ap, int);
-		(*i)++;
+			(*i)++;
+		}
 		while (ft_isdigit(format[*i]))
 		{
-			params->precision = (params->precision * 10) + (format [*i] - '0');
+			params->precision = (params->precision * 10) + (format[*i] - '0');
 			(*i)++;
 		}
 		if (params->precision < 0)

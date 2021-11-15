@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include "../libft/libft.h"
 # include <stdarg.h>
@@ -34,7 +34,7 @@ typedef struct s_params
 int			ft_print(t_params *params, va_list ap);
 int			ft_parse(va_list ap, int *i, t_params *params, const char *format);
 int			ft_reading(va_list ap, const char *format);
-int			ft_printf(char *format, ...);
+int			ft_printf(const char *format, ...);
 
 t_params	ft_init(void);
 int			ft_parse_flags(int	*i, t_params *params, const char *format);
@@ -61,7 +61,7 @@ int			ft_print_str(t_params *params, char *str);
 int			ft_print_u(t_params *params, unsigned int num);
 
 int			ft_len_x(unsigned long num);
-int			ft_sharp_or_no(t_params *params, int len_x, char *str_x, int len);
+int			ft_sharp_or_no(t_params *params, int len_x, char *str_x, char *c);
 int			ft_print_x(t_params *params, unsigned int x);
 
 int			ft_mps_none_precision(t_params *params, int len_di,

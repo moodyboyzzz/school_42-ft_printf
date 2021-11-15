@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_print_str(t_params *params, char *str)
 {
@@ -18,10 +18,9 @@ int	ft_print_str(t_params *params, char *str)
 	int	len_str;
 
 	len = 0;
-	len_str = 0;
 	if (!str)
 		str = "(null)";
-	len_str = ft_strlen(str);
+	len_str = (int)ft_strlen(str);
 	if ((params->precision >= 0) && (len_str > params->precision))
 		len_str = params->precision;
 	if (params->minus)

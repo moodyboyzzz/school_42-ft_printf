@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 #include <stdio.h>
 
 int	ft_print(t_params *params, va_list ap)
@@ -28,9 +28,7 @@ int	ft_print(t_params *params, va_list ap)
 		len = ft_print_di(params, va_arg(ap, int));
 	else if (params->type == 'u')
 		len = ft_print_u(params, va_arg(ap, unsigned int));
-	else if (params->type == 'x')
-		len = ft_print_x(params, va_arg(ap, unsigned int));
-	else if (params->type == 'X')
+	else if (params->type == 'x' || params->type == 'X')
 		len = ft_print_x(params, va_arg(ap, unsigned int));
 	else if (params->type == '%')
 		len = ft_print_percent(params);
@@ -45,7 +43,7 @@ int	ft_parse(va_list ap, int *i, t_params *params, const char *format)
 	if (format[*i] == 'c' || format[*i] == 's' || format[*i] == 'p'
 		|| format[*i] == 'd' || format[*i] == 'i' || format[*i] == 'u'
 		|| format[*i] == 'x' || format[*i] == 'X' || format[*i] == '%')
-		params->type = format[(*i)++];
+		params->type = (int)format[(*i)++];
 	return (*i);
 }
 
@@ -76,12 +74,11 @@ int	ft_reading(va_list ap, const char *format)
 	return (length);
 }
 
-int	ft_printf(char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		length;
 
-	length = 0;
 	va_start(ap, format);
 	length = ft_reading(ap, format);
 	va_end(ap);

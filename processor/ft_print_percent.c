@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_print_percent(t_params *params)
 {
@@ -22,15 +22,17 @@ int	ft_print_percent(t_params *params)
 		write(1, "%", 1);
 		len++;
 	}
-	while (params->width--)
+	if (params->width > len)
 	{
 		if (params->zero)
-			ft_putchar_fd('0', 1);
+			len += ft_print_width(params->width - 1, 1);
 		else
-			ft_putchar_fd(' ', 1);
-		len++;
+			len += ft_print_width(params->width - 1, 0);
 	}
 	if (!params->minus)
+	{
 		write(1, "%", 1);
+		len++;
+	}
 	return (len);
 }

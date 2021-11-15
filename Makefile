@@ -1,6 +1,6 @@
 NAME		=	libftprintf.a
 
-INCLUDES	=	libftprintf.h
+INCLUDES	=	includes/ft_printf.h
 
 SRCS		=	base/ft_printf.c				\
 				parser/parse.c					\
@@ -23,7 +23,7 @@ OBJS		= ${SRCS:.c=.o}
 
 CC			= gcc
 
-RM			= rm -f
+RM			= rm -rf
 
 CFLAGS		= -Wall -Wextra -Werror -I
 
@@ -31,12 +31,14 @@ all:  		${NAME}
 
 ${NAME}:	${OBJS}
 			ar rcs ${NAME} ${OBJS}
+			@ranlib ${NAME}
 
 .c.o:
 			${CC} ${CFLAGS} ${INCLUDES} -c $< -o ${<:.c=.o}
 
 bonus:		${OBJS}
 			ar rcs ${NAME} ${OBJS}
+			@ranlib ${NAME}
 
 clean:
 			${RM} ${OBJS}

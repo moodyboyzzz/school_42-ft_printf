@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_print_c(t_params	*params, char c)
 {
@@ -19,11 +19,10 @@ int	ft_print_c(t_params	*params, char c)
 	len = 0;
 	if (params->minus)
 		ft_putchar_fd(c, 1);
-	while (--params->width)
-	{
-		ft_putchar_fd(' ', 1);
-		len++;
-	}
+	if (params->zero)
+		len += ft_print_width(params->width - 1, 1);
+	else
+		len += ft_print_width(params->width - 1, 0);
 	if (!params->minus)
 		ft_putchar_fd(c, 1);
 	return (len + 1);

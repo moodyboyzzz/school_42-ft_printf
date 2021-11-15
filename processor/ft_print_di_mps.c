@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_mps_none_precision(t_params *params, int len_di, char *str, char *c)
 {
@@ -38,7 +38,7 @@ int	ft_mps_none_precision(t_params *params, int len_di, char *str, char *c)
 		if ((params->width > len_di + params->flag) && params->minus)
 			len += ft_print_width(params->width - len_di - params->flag, 0);
 	}
-	return (len + 1);
+	return (len + params->flag);
 }
 
 int	ft_mps_have_precision(t_params *params, int len_di, char *str, char *c)

@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "includes/libftprintf.h"
+#include "includes/ft_printf.h"
+#include <limits.h>
 
 int	main(void)
 {
 	int	p;
 
-	p = 97;
-	printf("%c\n", 'g');
-	ft_printf("%c\n", 'g');
+	p = printf(" %#x ;", 1);
+	printf("%d\n", p);
+	p = ft_printf(" %#x ;", 1);
+	printf("%d\n", p);
 	return (0);
 }

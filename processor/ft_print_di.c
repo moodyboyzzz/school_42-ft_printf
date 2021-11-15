@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_print_width(int width, int zero)
 {
 	int	len;
 
 	len = 0;
-	while (width--)
+	while (width-- > 0)
 	{
 		if (zero)
 			ft_putchar_fd('0', 1);
@@ -47,7 +47,7 @@ int	ft_pos_or_neg(int len, t_params *params, char *str, int len_di)
 		else if (params->plus)
 			c = "+";
 		else
-			c = "" "";
+			c = " ";
 		if (params->precision < 0)
 			len = ft_mps_none_precision(params, len_di, str, c);
 		else
@@ -63,7 +63,7 @@ int	ft_print_di(t_params *params, int num)
 	int				len_di;
 
 	len = 0;
-	len_di = 0;
+	//len_di = 0;
 	if (params->precision == 0 && num == 0)
 	{
 		len = ft_print_width(params->width, 0);

@@ -10,7 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
+
+void	ft_zero(t_params *params, unsigned int x, char *c)
+{
+	if (x > 0)
+	{
+		c[0] = '0';
+		c[1] = (char) params->type;
+		params->flag = 2;
+	}
+	else
+	{
+		params->flag = 0;
+		params->sharp = 0;
+	}
+}
 
 int	ft_len_x(unsigned long num)
 {
@@ -38,25 +53,21 @@ static char	*ft_itoa_x(unsigned long num, int len, t_params *params)
 	while (len > -1)
 	{
 		if (num % 16 > 9)
-			str[len--] = (num % 16) + params->type - 33;
+			str[len--] = (char)((num % 16) + params->type - 33);
 		else
-			str[len--] = (num % 16) + 48;
+			str[len--] = (char)((num % 16) + 48);
 		num /= 16;
 	}
 	return (str);
 }
 
-int	ft_sharp_or_no(t_params *params, int len_x, char *str_x, int len)
+int	ft_sharp_or_no(t_params *params, int len_x, char *str_x, char *c)
 {
-	char	*c;
+	int	len;
 
+	len = 0;
 	if (params->sharp)
 	{
-		if (params->type == 'X')
-			c = "0X";
-		else
-			c = "0x";
-		params->flag = 2;
 		if (params->precision < 0)
 			len += ft_mps_none_precision(params, len_x, str_x, c);
 		else
@@ -77,10 +88,11 @@ int	ft_print_x(t_params *params, unsigned int x)
 	int				len;
 	int				len_x;
 	char			*str_x;
+	char			c[2];
 	unsigned long	num;
 
 	len = 0;
-	len_x = 0;
+	ft_zero(params, x, c);
 	if (params->precision == 0 && x == 0)
 	{
 		len += ft_print_width(params->width, 0);
@@ -89,7 +101,7 @@ int	ft_print_x(t_params *params, unsigned int x)
 	num = (unsigned long) x;
 	len_x = ft_len_x(num);
 	str_x = ft_itoa_x(num, len_x, params);
-	len += ft_sharp_or_no(params, len_x, str_x, len);
+	len += ft_sharp_or_no(params, len_x, str_x, c);
 	free(str_x);
 	return (len + len_x);
 }
