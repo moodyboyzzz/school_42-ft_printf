@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctommy <ctommy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/16 17:15:32 by ctommy            #+#    #+#             */
+/*   Updated: 2021/11/16 17:15:33 by ctommy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
 t_params	ft_init(void)
@@ -51,6 +63,7 @@ int	ft_parse_width(va_list ap, int	*i, t_params *params, const char *format)
 			params->minus = 1;
 			params->width *= -1;
 		}
+		(*i)++;
 	}
 	while (ft_isdigit(format[*i]))
 	{

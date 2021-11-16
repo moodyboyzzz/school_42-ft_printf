@@ -1,6 +1,7 @@
 ### C template
 # Prerequisites
 *.d
+.gitignore
 
 # Object files
 *.o

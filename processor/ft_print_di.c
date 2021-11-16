@@ -12,6 +12,21 @@
 
 #include "../includes/ft_printf.h"
 
+int	ft_print_null(t_params *params, int len)
+{
+	if (params->plus && params->minus)
+		ft_putchar_fd('+', 1);
+	else if (params->space && params->minus)
+		ft_putchar_fd(' ', 1);
+	len = ft_print_width(params->width - params->plus - params->space,
+			0);
+	if (params->plus && !params->minus)
+		ft_putchar_fd('+', 1);
+	else if (params->space && !params->minus)
+		ft_putchar_fd(' ', 1);
+	return (len + 1);
+}
+
 int	ft_print_width(int width, int zero)
 {
 	int	len;
@@ -32,8 +47,7 @@ int	ft_pos_or_neg(int len, t_params *params, char *str, int len_di)
 {
 	char	*c;
 
-	if ((params->pos_or_neg == 1 && !params->space) || (params->pos_or_neg == 1
-			&& !params->plus))
+	if (params->pos_or_neg == 1 && !params->space && !params->plus)
 	{
 		if (params->precision < 0)
 			len = ft_pos_none_precision(params, len_di, str);
@@ -63,19 +77,15 @@ int	ft_print_di(t_params *params, int num)
 	int				len_di;
 
 	len = 0;
-	//len_di = 0;
 	if (params->precision == 0 && num == 0)
-	{
-		len = ft_print_width(params->width, 0);
-		return (len);
-	}
+		return (ft_print_null(params, len));
 	if (num < 0)
 	{
 		num *= -1;
 		params->pos_or_neg = -1;
 	}
 	str = ft_itoa(num);
-	len_di = ft_strlen(str);
+	len_di = (int)ft_strlen(str);
 	len = ft_pos_or_neg(len, params, str, len_di);
 	free(str);
 	return (len + len_di);
