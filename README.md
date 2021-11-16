@@ -1,1 +1,2 @@
-# school_42-ft_printf
+# school_42-ft_print
+hui
